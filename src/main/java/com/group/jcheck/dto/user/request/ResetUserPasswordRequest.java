@@ -4,7 +4,7 @@ import lombok.Getter;
 
 @Getter
 public class ResetUserPasswordRequest {
-    private String userName;
+    private String userId;
     private String resetUserPassword;
     private String superAdminPassword;
 }

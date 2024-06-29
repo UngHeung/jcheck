@@ -4,7 +4,7 @@ import lombok.Getter;
 
 @Getter
 public class UpdateUserPhoneNumberRequest {
-    private String userName;
+    private String userId;
     private String newUserPhoneNumber;
     private String userPassword;
 }
