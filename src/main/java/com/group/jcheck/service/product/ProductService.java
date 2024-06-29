@@ -22,10 +22,10 @@ public class ProductService {
     @Transactional
     public String createProduct(CreateProductRequest request) {
         if (productRepository.findByProductModelName(request.getProductModelName()).isPresent())
-            throw new IllegalArgumentException("이미 해당 모델명으로 등록된 제품이 있습니다..");
+            throw new IllegalArgumentException("이미 해당 모델명으로 등록된 제품이 있습니다.");
         Product product = new Product(request);
         productRepository.save(product);
-        return "제품이 정상적으로 등록되었습니다.";
+        return product.getProductModelName() + "제품이 정상적으로 등록되었습니다.";
     }
 
     @Transactional
