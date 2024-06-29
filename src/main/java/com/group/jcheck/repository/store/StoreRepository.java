@@ -1,7 +1,10 @@
 package com.group.jcheck.repository.store;
 
+import com.group.jcheck.domain.store.Store;
 import org.springframework.data.jpa.repository.JpaRepository;
 
-public interface StoreRepository extends JpaRepository {
-    
+import java.util.Optional;
+
+public interface StoreRepository extends JpaRepository<Store, Long> {
+    Optional<Store> findByStoreName();
 }
