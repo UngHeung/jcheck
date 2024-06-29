@@ -1,20 +1,19 @@
 package com.group.jcheck.controller.product;
 
 import com.group.jcheck.dto.product.request.CreateProductRequest;
+import com.group.jcheck.dto.product.request.UpdateProductRequest;
 import com.group.jcheck.dto.product.response.ProductResponse;
 import com.group.jcheck.service.product.ProductService;
-import org.springframework.web.bind.annotation.GetMapping;
-import org.springframework.web.bind.annotation.PostMapping;
-import org.springframework.web.bind.annotation.RequestBody;
-import org.springframework.web.bind.annotation.RestController;
+import org.springframework.web.bind.annotation.*;
 
 import java.util.List;
+import java.util.Map;
 
 @RestController
 public class ProductController {
     private final ProductService productService;
 
-    public ProductController(ProductService productService) {
+    public ProductController(@RequestBody ProductService productService) {
         this.productService = productService;
     }
 
@@ -26,5 +25,15 @@ public class ProductController {
     @GetMapping("/product")
     public List<ProductResponse> readProduct() {
         return productService.readProducts();
+    }
+
+    @PutMapping("/product")
+    public String updateProduct(@RequestBody UpdateProductRequest request) {
+        return productService.updateProduct(request);
+    }
+
+    @DeleteMapping("/product")
+    public String deleteProduct(@RequestBody Map<String, String> request) {
+        return productService.deleteProduct(request.get("productModelName"));
     }
 }
