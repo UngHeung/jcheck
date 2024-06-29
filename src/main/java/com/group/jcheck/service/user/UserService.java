@@ -44,6 +44,12 @@ public class UserService {
     }
 
     @Transactional
+    public UserResponse readUser(FindUserIdRequest request) {
+        return userRepository.findByUserNameAndUserPhoneNumber(request.getUserName(), request.getUserPhoneNumber())
+                .orElseThrow(IllegalArgumentException::new);
+    }
+
+    @Transactional
     public String updateUserName(UpdateUserNameRequest request) {
         User user = userRepository.findByUserId(request.getUserId())
                 .orElseThrow(IllegalChannelGroupException::new);
