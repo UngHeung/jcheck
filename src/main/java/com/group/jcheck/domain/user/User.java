@@ -5,6 +5,7 @@ import jakarta.persistence.*;
 import lombok.Data;
 
 @Data
+@Table(name = "USERS")
 @Entity
 public class User {
     @Id
@@ -12,9 +13,10 @@ public class User {
     private Long id = null;
 
     @Id
+    @Column(nullable = false)
     private Long storeId;
 
-    @Column(length = 20)
+    @Column(nullable = false, length = 20)
     private String storeName;
     @Column(nullable = false, length = 20)
     private String userId;
