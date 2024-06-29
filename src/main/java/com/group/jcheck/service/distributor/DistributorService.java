@@ -72,7 +72,7 @@ public class DistributorService {
         if (!request.getSuperAdminPassword().equals("tempPw"))
             throw new IllegalArgumentException("비밀번호를 확인해주세요");
         String currentDistributorType = distributor.getDistributorType();
-        distributor.setDistributorType(request.getNewDistributorType());
+        distributor.updateType(request.getNewDistributorType());
         return "대리점 통신사가 " + currentDistributorType + "에서 " + distributor.getDistributorType() + "으로 변경되었습니다.";
     }
 

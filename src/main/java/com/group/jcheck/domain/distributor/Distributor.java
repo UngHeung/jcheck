@@ -16,7 +16,7 @@ public class Distributor {
     @Column(nullable = false, length = 10)
     private String distributorType;
 
-    public Distributor() {};
+    public Distributor() {}
 
     public Distributor(CreateDistributorRequest request) {
         this.distributorName = request.getDistributorName();
