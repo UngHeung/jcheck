@@ -1,5 +1,6 @@
 package com.group.jcheck.domain.user;
 
+import com.group.jcheck.dto.user.request.CreateUserRequest;
 import jakarta.persistence.*;
 import lombok.Data;
 
@@ -23,6 +24,17 @@ public class User {
     private String userName;
     @Column(nullable = false, length = 15) // 01000000000
     private String userPhoneNumber;
+
+    public User() {}
+
+    public User(CreateUserRequest request) {
+        this.storeId = request.getStoreId();
+        this.storeName = request.getStoreName();
+        this.userId = request.getUserId();
+        this.userPassword = request.getUserPassword();
+        this.userName = request.getUserName();
+        this.userPhoneNumber = request.getUserPhoneNumber();
+    }
 
     public void updateUserName(String newUserName) {
         this.userName = newUserName;
