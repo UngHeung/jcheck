@@ -1,8 +1,10 @@
 package com.group.jcheck.service.user;
 
+import com.group.jcheck.domain.store.Store;
 import com.group.jcheck.domain.user.User;
 import com.group.jcheck.dto.user.request.*;
 import com.group.jcheck.dto.user.response.UserResponse;
+import com.group.jcheck.repository.store.StoreRepository;
 import com.group.jcheck.repository.user.UserRepository;
 import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
@@ -14,13 +16,18 @@ import java.util.stream.Collectors;
 @Service
 public class UserService {
     private final UserRepository userRepository;
+    private final StoreRepository storeRepository;
 
-    public UserService(UserRepository userRepository) {
+    public UserService(UserRepository userRepository, StoreRepository storeRepository) {
         this.userRepository = userRepository;
+        this.storeRepository = storeRepository;
     }
 
     @Transactional
     public String createUser(CreateUserRequest request) {
+        Store store = storeRepository.findById(request.getStoreId())
+                .orElseThrow(IllegalArgumentException::new);
+        request.setStoreName(store.getStoreName());
         if (userRepository.findByUserId(request.getUserId()).isPresent())
             throw new IllegalArgumentException("이미 등록된 아이디 입니다..");
         if (userRepository.findByUserPhoneNumber(request.getUserPhoneNumber()).isPresent())
@@ -74,7 +81,7 @@ public class UserService {
         if (!request.getSuperAdminPassword().equals("tempPw"))
             throw new IllegalArgumentException("비밀번호를 확인해주세요.");
         user.updateUserPassword("임시비밀번호");
-        return user.getUserName() + "님의 비밀번호가 정상적으로 초기화되었습니다. (" + "임시비밀번호" + ")"
+        return user.getUserName() + "님의 비밀번호가 정상적으로 초기화되었습니다. (" + "임시비밀번호" + ")";
     }
 
     @Transactional
