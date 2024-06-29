@@ -12,7 +12,7 @@ public class Seller {
     private Long id = null;
     @Column(nullable = false)
     private Long storeId;
-    @Column(nullable = false, length = 20)
+    @Column(length = 20)
     private String storeName;
     @Column(nullable = false, length = 20)
     private String sellerId;

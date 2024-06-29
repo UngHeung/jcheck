@@ -65,6 +65,8 @@ public class SellerService {
     public String updateSellerPhoneNumber(UpdateSellerPhoneNumberRequest request) {
         Seller seller = sellerRepository.findBySellerId(request.getSellerId())
                 .orElseThrow(IllegalArgumentException::new);
+        if (!request.getSellerPassword().equals(seller.getSellerPassword()))
+            throw new IllegalArgumentException("비밀번호를 확인해주세요");
         if (sellerRepository.findBySellerPhoneNumber(request.getNewSellerPhoneNumber()).isPresent())
             throw new IllegalArgumentException("이미 등록된 핸드폰번호 입니다.");
         seller.updateSellerPhoneNumber(request.getNewSellerPhoneNumber());
