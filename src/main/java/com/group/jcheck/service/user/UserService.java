@@ -58,7 +58,7 @@ public class UserService {
     }
 
     @Transactional
-    public String UpdateUserPassword(UpdateUserPasswordRequest request) {
+    public String updateUserPassword(UpdateUserPasswordRequest request) {
         User user = userRepository.findByUserId(request.getUserId())
                 .orElseThrow(IllegalArgumentException::new);
         if (user.getUserPassword().equals(request.getCurrentUserPassword()))
@@ -68,12 +68,23 @@ public class UserService {
     }
 
     @Transactional
-    public String ResetUserPassword(ResetUserPasswordRequest request) {
+    public String resetUserPassword(ResetUserPasswordRequest request) {
         User user = userRepository.findByUserId(request.getUserId())
                 .orElseThrow(IllegalArgumentException::new);
         if (!request.getSuperAdminPassword().equals("tempPw"))
             throw new IllegalArgumentException("비밀번호를 확인해주세요.");
         user.updateUserPassword("임시비밀번호");
         return user.getUserName() + "님의 비밀번호가 정상적으로 초기화되었습니다. (" + "임시비밀번호" + ")"
+    }
+
+    @Transactional
+    public String deleteUser(DeleteUserRequest request) {
+        User user = userRepository.findByUserId(request.getUserId())
+                .orElseThrow(IllegalArgumentException::new);
+        if (!request.getSuperAdminPassword().equals("tempPw"))
+            throw new IllegalArgumentException("비밀번호를 확인해주세요.");
+        String deleteUser = user.getUserName();
+        userRepository.delete(user);
+        return deleteUser + "님의 아이디가 정상적으로 삭제되었습니다.";
     }
 }
