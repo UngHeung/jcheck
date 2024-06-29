@@ -12,3 +12,6 @@ INSERT INTO product (product_model_name, product_pet_name, product_memory, produ
 
 -- insert data for store
 INSERT INTO store (store_name, store_code) VALUES ('store1', 's1'), ('store2', 's2'), ('store3', 's3');
+
+-- insert data for seller
+-- INSERT INTO seller ()
