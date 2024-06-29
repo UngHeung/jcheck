@@ -1,5 +1,6 @@
 package com.group.jcheck.domain.distributor;
 
+import com.group.jcheck.dto.distributor.request.CreateDistributorRequest;
 import jakarta.persistence.*;
 import lombok.Data;
 
@@ -17,9 +18,9 @@ public class Distributor {
 
     public Distributor() {};
 
-    public Distributor(String distributorName, String distributorType) {
-        this.distributorName = distributorName;
-        this.distributorType = distributorType;
+    public Distributor(CreateDistributorRequest request) {
+        this.distributorName = request.getDistributorName();
+        this.distributorType = request.getDistributorType();
     }
 
     public void updateName(String newDistributorName) {

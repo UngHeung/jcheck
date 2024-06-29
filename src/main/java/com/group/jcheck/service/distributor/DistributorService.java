@@ -27,7 +27,7 @@ public class DistributorService {
         Optional<Distributor> distributor = distributorRepository.findByDistributorName(request.getDistributorName());
         if (distributor.isPresent())
             throw new IllegalArgumentException("이미 해당 이름으로 등록된 대리점이 있습니다.");
-        distributorRepository.save(new Distributor(request.getDistributorName(), request.getDistributorType()));
+        distributorRepository.save(new Distributor(request));
         return "새로운 대리점 등록이 완료되었습니다.";
     }
 
