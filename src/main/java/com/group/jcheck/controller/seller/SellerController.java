@@ -1,5 +1,6 @@
 package com.group.jcheck.controller.seller;
 
+import com.group.jcheck.domain.seller.Seller;
 import com.group.jcheck.dto.seller.request.*;
 import com.group.jcheck.dto.seller.response.SellerResponse;
 import com.group.jcheck.service.seller.SellerService;
@@ -26,7 +27,7 @@ public class SellerController {
     }
 
     @GetMapping("/seller_find_id")
-    public SellerResponse readSeller(@RequestBody FindSellerIdRequest request) {
+    public Seller readSeller(@RequestBody FindSellerIdRequest request) {
         return sellerService.readSeller(request);
     }
 

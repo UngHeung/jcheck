@@ -8,16 +8,16 @@ public class SellerResponse {
     private Long id;
     private Long storeId;
     private String storeName;
-    private String userId;
-    private String userName;
-    private String userPhoneNumber;
+    private String sellerId;
+    private String sellerName;
+    private String sellerPhoneNumber;
 
     public SellerResponse(Seller seller) {
         this.id = seller.getId();
         this.storeId = seller.getStoreId();
         this.storeName = seller.getStoreName();
-        this.userId = seller.getSellerId();
-        this.userName = seller.getSellerName();
-        this.userPhoneNumber = seller.getSellerPhoneNumber();
+        this.sellerId = seller.getSellerId();
+        this.sellerName = seller.getSellerName();
+        this.sellerPhoneNumber = seller.getSellerPhoneNumber();
     }
 }

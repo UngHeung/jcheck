@@ -10,7 +10,6 @@ public class Seller {
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Long id = null;
-    @Id
     @Column(nullable = false)
     private Long storeId;
     @Column(nullable = false, length = 20)
