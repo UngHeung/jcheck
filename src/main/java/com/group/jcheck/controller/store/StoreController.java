@@ -32,7 +32,7 @@ public class StoreController {
 
     @GetMapping("/store_name")
     public Store readStoreByStoreName(@RequestBody Map<String, String> request) {
-        return storeService.readStoreByStoreName(request.get("store_name"));
+        return storeService.readStoreByStoreName(request.get("storeName"));
     }
 
     @PutMapping("/store_name")

@@ -11,4 +11,4 @@ INSERT INTO product (product_model_name, product_pet_name, product_memory, produ
 INSERT INTO product (product_model_name, product_pet_name, product_memory, product_price, product_manufacturer) VALUES ('아이폰15', 'AIP15_256', 256, 1200000, 'apple');
 
 -- insert data for store
-INSERT INTO store (store_name, store_code) VALUES ('store1', 's1'), ('store2', 's2'), ('store1', 's3');
+INSERT INTO store (store_name, store_code) VALUES ('store1', 's1'), ('store2', 's2'), ('store3', 's3');
