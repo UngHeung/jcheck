@@ -9,7 +9,6 @@ public class Product {
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Long id = null;
-
     @Column(nullable = false, length = 40)
     private String productPetName;
     @Column(nullable = false, length = 20)
