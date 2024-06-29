@@ -1,5 +1,6 @@
 package com.group.jcheck.domain.product;
 
+import com.group.jcheck.dto.product.request.CreateProductRequest;
 import jakarta.persistence.*;
 import lombok.Data;
 
@@ -24,8 +25,13 @@ public class Product {
 
     public Product() {};
 
-    public product() {
-
+    public Product(CreateProductRequest request) {
+        this.productPetName = request.getProductPetName();
+        this.productModelName = request.getProductModelName();
+        this.productMemory = request.getProductMemory();
+        this.productPrice = request.getProductPrice();
+        this.productManufacturer = request.getProductManufacturer();
+        this.productColors = request.getProductColors();
     }
 
     public void updateProductPrice(Integer newProductPrice) {
