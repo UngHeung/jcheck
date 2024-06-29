@@ -2,6 +2,7 @@ package com.group.jcheck.service.store;
 
 import com.group.jcheck.domain.store.Store;
 import com.group.jcheck.dto.store.request.CreateStoreRequest;
+import com.group.jcheck.dto.store.request.DeleteStoreRequest;
 import com.group.jcheck.dto.store.request.UpdateStoreCodeRequest;
 import com.group.jcheck.dto.store.request.UpdateStoreNameRequest;
 import com.group.jcheck.dto.store.response.StoreResponse;
@@ -64,8 +65,8 @@ public class StoreService {
     }
 
     @Transactional
-    public String deleteStore(String storeName) {
-        Store store = storeRepository.findByStoreName(storeName)
+    public String deleteStore(DeleteStoreRequest request) {
+        Store store = storeRepository.findByStoreName(request.getStoreName())
                 .orElseThrow(IllegalArgumentException::new);
         String deleteStoreName = store.getStoreName();
         storeRepository.delete(store);
