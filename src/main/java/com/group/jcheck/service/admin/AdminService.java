@@ -4,6 +4,7 @@ import com.group.jcheck.domain.admin.Admin;
 import com.group.jcheck.dto.admin.request.*;
 import com.group.jcheck.dto.admin.response.AdminsResponse;
 import com.group.jcheck.repository.admin.AdminRepository;
+import org.springframework.security.crypto.bcrypt.BCryptPasswordEncoder;
 import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
 
@@ -14,9 +15,11 @@ import java.util.stream.Collectors;
 @Service
 public class AdminService {
     private final AdminRepository adminRepository;
+    private final BCryptPasswordEncoder bCryptPasswordEncoder;
 
-    public AdminService(AdminRepository adminRepository) {
+    public AdminService(AdminRepository adminRepository, BCryptPasswordEncoder bCryptPasswordEncoder) {
         this.adminRepository = adminRepository;
+        this.bCryptPasswordEncoder = bCryptPasswordEncoder;
     }
 
     @Transactional
@@ -26,7 +29,9 @@ public class AdminService {
             throw new IllegalArgumentException("이미 해당 아이디로 생성된 어드민이 있습니다.");
         if (!request.getSuperAdminPassword().equals("tempPw"))
             throw new IllegalArgumentException("비밀번호를 확인해주세요.");
-        adminRepository.save(new Admin(request.getAdminId(), request.getAdminName(), request.getAdminPassword()));
+        String encodePassword = bCryptPasswordEncoder.encode(request.getAdminPassword());
+        request.setAdminPassword(encodePassword);
+        adminRepository.save(new Admin(request));
         return "새로운 어드민 등록이 완료되었습니다.";
     }
 
