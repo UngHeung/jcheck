@@ -9,6 +9,7 @@ public class CreateSellerRequest {
     @Setter
     private String storeName;
     private String sellerId;
+    @Setter
     private String sellerPassword;
     private String sellerName;
     private String sellerPhoneNumber;
