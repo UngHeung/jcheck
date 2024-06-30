@@ -26,4 +26,6 @@ spring:
     console:
       enabled: true
       path: /h2-console
+  jwt:
+    secret: cc24857e2d929b1c014f9b0ec9813d294d31fc5bc838f62b69a76203f9f49072
 ---
