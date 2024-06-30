@@ -1,10 +1,10 @@
 package com.group.jcheck.domain.admin;
 
+import com.group.jcheck.dto.admin.request.CreateAdminRequest;
 import jakarta.persistence.*;
 import lombok.Data;
 
 @Data
-// @Table(name = "ADMINS")
 @Entity
 public class Admin {
     @Id
@@ -22,10 +22,10 @@ public class Admin {
 
     public Admin() {};
 
-    public Admin(String adminId, String adminName, String adminPassword) {
-        this.adminId = adminId;
-        this.adminName = adminName;
-        this.adminPassword = adminPassword;
+    public Admin(CreateAdminRequest request) {
+        this.adminId = request.getAdminId();
+        this.adminName = request.getAdminName();
+        this.adminPassword = request.getAdminPassword();
         this.adminAuthority = false;
     }
 
