@@ -6,6 +6,7 @@ import com.group.jcheck.dto.seller.request.*;
 import com.group.jcheck.dto.seller.response.SellerResponse;
 import com.group.jcheck.repository.seller.SellerRepository;
 import com.group.jcheck.repository.store.StoreRepository;
+import org.springframework.security.crypto.bcrypt.BCryptPasswordEncoder;
 import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
 
@@ -17,10 +18,12 @@ import java.util.stream.Collectors;
 public class SellerService {
     private final SellerRepository sellerRepository;
     private final StoreRepository storeRepository;
+    private final BCryptPasswordEncoder bCryptPasswordEncoder;
 
-    public SellerService(SellerRepository sellerRepository, StoreRepository storeRepository) {
+    public SellerService(SellerRepository sellerRepository, StoreRepository storeRepository, BCryptPasswordEncoder bCryptPasswordEncoder) {
         this.sellerRepository = sellerRepository;
         this.storeRepository = storeRepository;
+        this.bCryptPasswordEncoder = bCryptPasswordEncoder;
     }
 
     @Transactional
@@ -32,6 +35,8 @@ public class SellerService {
             throw new IllegalArgumentException("이미 등록된 아이디 입니다..");
         if (sellerRepository.findBySellerPhoneNumber(request.getSellerPhoneNumber()).isPresent())
             throw new IllegalArgumentException("이미 등록된 핸드폰번호 입니다.");
+        String encodePassword = bCryptPasswordEncoder.encode(request.getSellerPassword());
+        request.setSellerPassword(encodePassword);
         sellerRepository.save(new Seller(request));
         return "사용자가 정상적으로 등록되었습니다.";
     }
