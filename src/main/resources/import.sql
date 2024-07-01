@@ -1,5 +1,5 @@
 -- insert data for admin
-INSERT INTO admin (admin_id, admin_name, admin_password, admin_authority) VALUES ('admin1', 'adam', '123', false), ('admin2', 'david', '456', false);
+INSERT INTO admin (admin_id, admin_name, admin_password, admin_authority, role) VALUES ('admin1', 'adam', '123', false, 'ADMIN'), ('admin2', 'david', '456', false, 'ADMIN');
 
 -- insert data for distributor
 INSERT INTO distributor (distributor_name, distributor_type) VALUES ('dist1', 'SKT'), ('dist3', 'SKT'), ('dist4', 'KT'), ('dist2', 'SKT'), ('dist5', 'KT'), ('dist6', 'KT'), ('dist7', 'LGU+'), ('dist8', 'LGU+');

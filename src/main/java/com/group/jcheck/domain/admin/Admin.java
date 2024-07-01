@@ -18,10 +18,10 @@ public class Admin {
     private String adminName;
     @Column(nullable = false, length = 60)
     private String adminPassword;
-    @Column(nullable = false, length = 10)
-    private String role;
     @Column(nullable = false)
     private Boolean adminAuthority;
+    @Column(nullable = false, length = 10)
+    private String role;
 
     public Admin() {};
 
@@ -29,8 +29,8 @@ public class Admin {
         this.adminId = request.getAdminId();
         this.adminName = request.getAdminName();
         this.adminPassword = request.getAdminPassword();
-        this.role = "ADMIN";
         this.adminAuthority = false;
+        this.role = "ADMIN";
     }
 
     public void updatePassword(String newAdminPassword) {
