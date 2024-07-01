@@ -1,12 +1,11 @@
 package com.group.jcheck.controller.admin;
 
 import com.group.jcheck.dto.admin.request.*;
-import com.group.jcheck.dto.admin.response.AdminsResponse;
+import com.group.jcheck.dto.admin.response.AdminResponse;
 import com.group.jcheck.service.admin.AdminService;
 import org.springframework.web.bind.annotation.*;
 
 import java.util.List;
-import java.util.Map;
 
 @RestController
 public class AdminController {
@@ -16,34 +15,28 @@ public class AdminController {
         this.adminService = adminService;
     }
 
-    @PostMapping("/admin")
-    public String createAdmin(@RequestBody CreateAdminRequest request) {
-        return adminService.createAdmin(request);
-    }
-
-    @GetMapping("/admin")
-    public List<AdminsResponse> readAdmins() {
+    @GetMapping("/admin/read_all")
+    public List<AdminResponse> readAdmins() {
         return adminService.readAdmins();
     }
 
-    @PutMapping("/admin_password")
+    @PutMapping("/admin/update/password")
     public String updateAdminPassword(@RequestBody UpdateAdminPasswordRequest request) {
         return adminService.updateAdminPassword(request);
     }
 
-    @DeleteMapping("/admin")
-    public String deleteAdmin(@RequestBody DeleteAdminRequest request) {
-        return adminService.deleteAdmin(request);
-    }
-
-    // Authority 변경
-    @PutMapping("/admin_authority")
+    @PutMapping("/admin/update/authority")
     public String updateAdminAuthority(@RequestBody UpdateAdminAuthorityRequest request) {
         return adminService.updateAdminAuthority(request);
     }
 
-    @PutMapping("admin_name")
+    @PutMapping("admin/update/name")
     public String updateAdminName(@RequestBody UpdateAdminNameRequest request) {
         return adminService.updateAdminName(request);
+    }
+
+    @DeleteMapping("/admin/delete")
+    public String deleteAdmin(@RequestBody DeleteAdminRequest request) {
+        return adminService.deleteAdmin(request);
     }
 }

@@ -1,12 +1,9 @@
 package com.group.jcheck.service.seller;
 
 import com.group.jcheck.domain.seller.Seller;
-import com.group.jcheck.domain.store.Store;
 import com.group.jcheck.dto.seller.request.*;
 import com.group.jcheck.dto.seller.response.SellerResponse;
 import com.group.jcheck.repository.seller.SellerRepository;
-import com.group.jcheck.repository.store.StoreRepository;
-import org.springframework.security.crypto.bcrypt.BCryptPasswordEncoder;
 import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
 
@@ -17,28 +14,9 @@ import java.util.stream.Collectors;
 @Service
 public class SellerService {
     private final SellerRepository sellerRepository;
-    private final StoreRepository storeRepository;
-    private final BCryptPasswordEncoder bCryptPasswordEncoder;
 
-    public SellerService(SellerRepository sellerRepository, StoreRepository storeRepository, BCryptPasswordEncoder bCryptPasswordEncoder) {
+    public SellerService(SellerRepository sellerRepository) {
         this.sellerRepository = sellerRepository;
-        this.storeRepository = storeRepository;
-        this.bCryptPasswordEncoder = bCryptPasswordEncoder;
-    }
-
-    @Transactional
-    public String createSeller(CreateSellerRequest request) {
-        Store store = storeRepository.findById(request.getStoreId())
-                .orElseThrow(IllegalArgumentException::new);
-        request.setStoreName(store.getStoreName());
-        if (sellerRepository.findBySellerId(request.getSellerId()).isPresent())
-            throw new IllegalArgumentException("이미 등록된 아이디 입니다..");
-        if (sellerRepository.findBySellerPhoneNumber(request.getSellerPhoneNumber()).isPresent())
-            throw new IllegalArgumentException("이미 등록된 핸드폰번호 입니다.");
-        String encodePassword = bCryptPasswordEncoder.encode(request.getSellerPassword());
-        request.setSellerPassword(encodePassword);
-        sellerRepository.save(new Seller(request));
-        return "사용자가 정상적으로 등록되었습니다.";
     }
 
     @Transactional

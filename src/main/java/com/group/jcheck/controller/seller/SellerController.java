@@ -16,37 +16,32 @@ public class SellerController {
         this.sellerService = sellerService;
     }
 
-    @PostMapping("/seller")
-    public String createSeller(@RequestBody CreateSellerRequest request) {
-        return sellerService.createSeller(request);
-    }
-
-    @GetMapping("/seller")
+    @GetMapping("/seller/read_all")
     public List<SellerResponse> readSellers() {
         return sellerService.readSellers();
     }
 
-    @GetMapping("/seller_find_id")
+    @GetMapping("/seller/find/id")
     public Seller readSeller(@RequestBody FindSellerIdRequest request) {
         return sellerService.readSeller(request);
     }
 
-    @PutMapping("/seller_name")
+    @PutMapping("/seller/update/name")
     public String updateSellerName(@RequestBody UpdateSellerNameRequest request) {
         return sellerService.updateSellerName(request);
     }
 
-    @PutMapping("/seller_phone_number")
+    @PutMapping("/seller/update/phone_number")
     public String updateSellerPhoneNumber(@RequestBody UpdateSellerPhoneNumberRequest request) {
         return sellerService.updateSellerPhoneNumber(request);
     }
 
-    @PutMapping("/seller_password")
+    @PutMapping("/seller/update/password")
     public String updateSellerPassword(@RequestBody UpdateSellerPasswordRequest request) {
         return sellerService.updateSellerPassword(request);
     }
 
-    @PutMapping("/seller_password_reset")
+    @PutMapping("/seller/reset/password")
     public String resetSellerPassword(@RequestBody ResetSellerPasswordRequest request) {
         return sellerService.resetSellerPassword(request);
     }

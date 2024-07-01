@@ -1,2 +1,4 @@
-package com.group.jcheck.controller.auth;public class JoinController {
+package com.group.jcheck.controller.auth;
+
+public class JoinController {
 }
