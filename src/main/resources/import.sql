@@ -15,4 +15,6 @@ INSERT INTO store (store_name, store_code) VALUES ('store1', 's1'), ('store2', '
 
 -- insert data for selelr
 
-INSERT INTO seller (store_id, seller_id, seller_password, seller_name, seller_phone_number) VALUES (1, 'seller1', '1234', '철수', '010-1234-1234');
+INSERT INTO seller (store_id, store_name, seller_id, seller_password, seller_name, seller_phone_number) VALUES (1, 'store1', 'seller1', '1234', '철수', '010-1234-1234');
+INSERT INTO seller (store_id, store_name, seller_id, seller_password, seller_name, seller_phone_number) VALUES (2, 'store2', 'seller2', '1234', '영희', '010-2345-2345');
+INSERT INTO seller (store_id, store_name, seller_id, seller_password, seller_name, seller_phone_number) VALUES (3, 'store3', 'seller3', '1234', '진호', '010-3456-3456');
