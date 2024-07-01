@@ -10,13 +10,14 @@ public class Seller {
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Long id = null;
+
     @Column(nullable = false)
     private Long storeId;
     @Column(length = 20)
     private String storeName;
     @Column(nullable = false, length = 20)
     private String sellerId;
-    @Column(nullable = false, length = 20)
+    @Column(nullable = false, length = 60)
     private String sellerPassword;
     @Column(nullable = false, length = 10)
     private String sellerName;
