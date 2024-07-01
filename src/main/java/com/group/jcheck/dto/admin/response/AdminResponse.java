@@ -4,7 +4,7 @@ import com.group.jcheck.domain.admin.Admin;
 import lombok.Data;
 
 @Data
-public class AdminsResponse {
+public class AdminResponse {
     private final Long id;
     private final String adminId;
     private final String adminName;
@@ -12,7 +12,7 @@ public class AdminsResponse {
     private final Boolean adminAuthority;
 
 
-    public AdminsResponse(Admin admin) {
+    public AdminResponse(Admin admin) {
         this.id = admin.getId();
         this.adminId = admin.getAdminId();
         this.adminName = admin.getAdminName();
